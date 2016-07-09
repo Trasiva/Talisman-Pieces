@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.0">
+    <TriggerPackage>
+        <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+            <name>Talisman Pieces Start</name>
+            <script>--deleteLine()</script>
+            <triggerType>0</triggerType>
+            <conditonLineDelta>0</conditonLineDelta>
+            <mStayOpen>0</mStayOpen>
+            <mCommand></mCommand>
+            <packageName></packageName>
+            <mFgColor>#ff0000</mFgColor>
+            <mBgColor>#ffff00</mBgColor>
+            <mSoundFile></mSoundFile>
+            <colorTriggerFgColor>#000000</colorTriggerFgColor>
+            <colorTriggerBgColor>#000000</colorTriggerBgColor>
+            <regexCodeList>
+                <string>^\s+Num Name\s+Level Set\s+Keyword\s+$</string>
+            </regexCodeList>
+            <regexCodePropertyList>
+                <integer>1</integer>
+            </regexCodePropertyList>
+        </Trigger>
+        <Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+            <name>Talisman Header</name>
+            <script>deleteLine()
+currentTalisman = matches[2]
+talismanTable[currentTalisman] = {}
+table.insert(talismanOrder, matches[2])
+</script>
+            <triggerType>0</triggerType>
+            <conditonLineDelta>0</conditonLineDelta>
+            <mStayOpen>0</mStayOpen>
+            <mCommand></mCommand>
+            <packageName></packageName>
+            <mFgColor>#ff0000</mFgColor>
+            <mBgColor>#ffff00</mBgColor>
+            <mSoundFile></mSoundFile>
+            <colorTriggerFgColor>#000000</colorTriggerFgColor>
+            <colorTriggerBgColor>#000000</colorTriggerBgColor>
+            <regexCodeList>
+                <string>^\s+(\w+)$</string>
+            </regexCodeList>
+            <regexCodePropertyList>
+                <integer>1</integer>
+            </regexCodePropertyList>
+        </Trigger>
+        <Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+            <name>Talisman Piece</name>
+            <script>deleteLine()
+local pieceInfo = {
+	[&quot;name&quot;] = string.trim(matches[3]),
+	[&quot;level&quot;] = matches[4],
+	[&quot;total&quot;] = matches[2],
+	[&quot;set&quot;] = matches[5],
+	[&quot;keyword&quot;] = matches[6],
+}
+
+table.insert(talismanTable[currentTalisman], pieceInfo)</script>
+            <triggerType>0</triggerType>
+            <conditonLineDelta>0</conditonLineDelta>
+            <mStayOpen>0</mStayOpen>
+            <mCommand></mCommand>
+            <packageName></packageName>
+            <mFgColor>#ff0000</mFgColor>
+            <mBgColor>#ffff00</mBgColor>
+            <mSoundFile></mSoundFile>
+            <colorTriggerFgColor>#000000</colorTriggerFgColor>
+            <colorTriggerBgColor>#000000</colorTriggerBgColor>
+            <regexCodeList>
+                <string>^\s+(\d+)\s+(.+)\s+(\d+)\s+(\w+)\s+(\w+)$</string>
+            </regexCodeList>
+            <regexCodePropertyList>
+                <integer>1</integer>
+            </regexCodePropertyList>
+        </Trigger>
+        <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+            <name>Talisman Auto More</name>
+            <script>if talismanAutoMore then
+	deleteLine()
+	send(&quot;more&quot;)
+	isMoreTalisman = true
+end</script>
+            <triggerType>0</triggerType>
+            <conditonLineDelta>0</conditonLineDelta>
+            <mStayOpen>0</mStayOpen>
+            <mCommand></mCommand>
+            <packageName></packageName>
+            <mFgColor>#ff0000</mFgColor>
+            <mBgColor>#ffff00</mBgColor>
+            <mSoundFile></mSoundFile>
+            <colorTriggerFgColor>#000000</colorTriggerFgColor>
+            <colorTriggerBgColor>#000000</colorTriggerBgColor>
+            <regexCodeList>
+                <string>^\[Type MORE if you wish to continue reading\. \(\d+% shown\)\]$</string>
+            </regexCodeList>
+            <regexCodePropertyList>
+                <integer>1</integer>
+            </regexCodePropertyList>
+        </Trigger>
+        <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+            <name>Talisman Auto More Continued</name>
+            <script>if talismanAutoMore then
+	deleteLine()
+	isMoreTalisman = false
+end</script>
+            <triggerType>0</triggerType>
+            <conditonLineDelta>0</conditonLineDelta>
+            <mStayOpen>0</mStayOpen>
+            <mCommand></mCommand>
+            <packageName></packageName>
+            <mFgColor>#ff0000</mFgColor>
+            <mBgColor>#ffff00</mBgColor>
+            <mSoundFile></mSoundFile>
+            <colorTriggerFgColor>#000000</colorTriggerFgColor>
+            <colorTriggerBgColor>#000000</colorTriggerBgColor>
+            <regexCodeList>
+                <string>[File continued via MORE]</string>
+            </regexCodeList>
+            <regexCodePropertyList>
+                <integer>3</integer>
+            </regexCodePropertyList>
+        </Trigger>
+        <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+            <name>Talisman Trigger</name>
+            <script>if not isMoreTalisman and talismanAutoMore then
+	talismanAutoMore = false
+end
+
+if not talismanAutoMore and talismanLook then
+	talismanLook = false
+	disableTrigger(&quot;Talisman Header&quot;)
+	disableTrigger(&quot;Talisman Piece&quot;)
+	if #talismanOrder &gt; 0 then
+		PrintTalismanPieces()
+	end
+end</script>
+            <triggerType>0</triggerType>
+            <conditonLineDelta>0</conditonLineDelta>
+            <mStayOpen>0</mStayOpen>
+            <mCommand></mCommand>
+            <packageName></packageName>
+            <mFgColor>#ff0000</mFgColor>
+            <mBgColor>#ffff00</mBgColor>
+            <mSoundFile></mSoundFile>
+            <colorTriggerFgColor>#000000</colorTriggerFgColor>
+            <colorTriggerBgColor>#000000</colorTriggerBgColor>
+            <regexCodeList>
+                <string>return isPrompt()</string>
+            </regexCodeList>
+            <regexCodePropertyList>
+                <integer>4</integer>
+            </regexCodePropertyList>
+        </Trigger>
+    </TriggerPackage>
+    <TimerPackage/>
+    <AliasPackage>
+        <Alias isActive="yes" isFolder="no">
+            <name>Talisman start</name>
+            <script>talismanAutoMore = true
+isMoreTalisman = false
+talismanLook = true
+talismanTable = {}
+talismanOrder = {}
+enableTrigger(&quot;Talisman Header&quot;)
+enableTrigger(&quot;Talisman Piece&quot;)
+send(&quot;Talisman Pieces&quot;, false)</script>
+            <command></command>
+            <packageName></packageName>
+            <regex>^talisman pieces$</regex>
+        </Alias>
+    </AliasPackage>
+    <ActionPackage/>
+    <ScriptPackage>
+        <Script isActive="yes" isFolder="no">
+            <name>Talisman Pieces</name>
+            <packageName></packageName>
+            <script>function PrintTalismanPieces()
+	local maxName = 0
+	for k, v in ipairs(talismanOrder) do
+		local name = v
+		if string.match(name, &quot;dragon&quot;) then
+			name = string.gsub(k, &quot;dragonpieces&quot;, &quot; Dragon&quot;):title()
+		end
+		
+		if maxName &lt; string.len(name) then
+			maxName = string.len(name) + 2
+		end
+	end
+	cecho(&quot;\n&lt;goldenrod&gt;&quot;..string.rep(&quot; &quot;, 34)..&quot;Talisman Pieces&quot;)
+	cecho(&quot;\n&lt;goldenrod&gt; &quot;..string.rep(&quot;-&quot;, 80))
+	local keyCount = 1
+	for mainkey, mainvalue in ipairs(talismanOrder) do
+		local isDragon = false
+		if string.match(mainvalue, &quot;dragon&quot;) then
+			isDragon = true
+			currentTalisman = string.gsub(mainvalue, &quot;dragonpieces&quot;, &quot; Dragon&quot;):title()
+		else
+			currentTalisman = string.gsub(mainvalue, &quot;pieces&quot;, &quot;&quot;)
+		end
+		cecho(&quot;\n&lt;goldenrod&gt;| &lt;green&gt;&quot;..currentTalisman..string.rep(&quot; &quot;, maxName - string.len(currentTalisman) - 1))
+		local loopIndex = 1
+		for subkey, subvalue in pairs(talismanTable[mainvalue]) do
+			local stringInsert = &quot;&quot;
+			if isDragon then
+				local level = tonumber(subvalue[&quot;level&quot;])
+				if not CheckDragonSpecial(subvalue[&quot;keyword&quot;]) then
+					if level == 1 then
+						stringInsert = &quot;/64&quot;
+					elseif level == 2 then
+						stringInsert = &quot;/32&quot;
+					elseif level == 3 then
+						stringInsert = &quot;/16&quot;
+					elseif level == 4 then
+						stringInsert = &quot;/8&quot;
+					elseif level == 5 then
+						stringInsert = &quot;/4&quot;
+					elseif level == 6 then
+						stringInsert = &quot;/2&quot;
+					else
+						stringInsert = &quot;/1&quot;
+					end
+				else
+					if level == 1 then
+						stringInsert = &quot;/4&quot;
+					elseif level == 2 then
+						stringInsert = &quot;/2&quot;
+					else
+						stringInsert = &quot;/1&quot;
+					end
+				end
+			end
+			local outputString = &quot;&lt;goldenrod&gt;|&lt;turquoise&gt;&quot;
+			if loopIndex &gt; 1 then
+				outputString = &quot;\n&quot;..outputString
+				outputString = outputString..string.rep(&quot; &quot;, maxName)..&quot;&lt;goldenrod&gt;|&lt;turquoise&gt;&quot;
+			end
+			
+			local rawString = string.rep(&quot; &quot;, 3 - string.len(subvalue[&quot;total&quot;]))..subvalue[&quot;total&quot;]..stringInsert..string.rep(&quot; &quot;, 4 - string.len(stringInsert))..&quot;- lv. &quot;..subvalue[&quot;level&quot;]..&quot; &quot;..subvalue[&quot;keyword&quot;]
+			outputString = outputString..rawString
+			
+			
+			cecho(outputString..string.rep(&quot; &quot;, (79 - maxName) - string.len(rawString))..&quot;&lt;goldenrod&gt;|&quot;)
+			loopIndex = loopIndex + 1
+		end
+		if keyCount &lt; #talismanOrder then
+			cecho(&quot;\n&lt;goldenrod&gt;|&quot;..string.rep(&quot;-&quot;, 80)..&quot;|&quot;)
+		end
+		keyCount = keyCount + 1
+	end
+	cecho(&quot;\n&lt;goldenrod&gt; &quot;..string.rep(&quot;-&quot;, 80))
+end
+
+function CheckDragonSpecial(keyword)
+	if string.match(keyword, &quot;sac&quot;) or string.match(keyword, &quot;stem&quot;) or string.match(keyword, &quot;lung&quot;) or string.match(keyword, &quot;larynx&quot;) or string.match(keyword, &quot;belly&quot;) then
+		return true
+	else
+		return false
+	end
+end</script>
+            <eventHandlerList/>
+        </Script>
+    </ScriptPackage>
+    <KeyPackage/>
+</MudletPackage>
